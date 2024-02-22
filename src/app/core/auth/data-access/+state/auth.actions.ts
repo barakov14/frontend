@@ -1,5 +1,9 @@
 import {createActionGroup, emptyProps, props} from '@ngrx/store'
-import {RegisterPayload, UserWithToken} from '../models/sign.model'
+import {
+  LoginPayload,
+  RegisterPayload,
+  UserWithToken,
+} from '../models/sign.model'
 
 export const authActions = createActionGroup({
   source: 'Auth',
@@ -7,7 +11,7 @@ export const authActions = createActionGroup({
     authSuccess: props<{user: UserWithToken}>(),
 
     register: props<{req: RegisterPayload}>(),
-    login: emptyProps(),
+    login: props<{req: LoginPayload}>(),
     logout: emptyProps(),
 
     registerFailure: emptyProps(),

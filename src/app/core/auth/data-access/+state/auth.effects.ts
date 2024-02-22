@@ -38,7 +38,7 @@ export class AuthEffects {
   loginEffect$ = createEffect(
     (api = inject(ApiService), actions$ = inject(Actions)) =>
       actions$.pipe(
-        ofType(authActions.register),
+        ofType(authActions.login),
         switchMap(({req}) => {
           return api.post<UserWithToken, LoginPayload>('/auth/', req).pipe(
             map((user) => {

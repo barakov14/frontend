@@ -28,12 +28,17 @@ import {MatButtonModule} from '@angular/material/button'
 export class LoginFormUiComponent {
   public hide = true
   @Output() redirectToSignUp = new EventEmitter()
+  @Output() login = new EventEmitter()
 
   public formGroup = new FormBuilder().group({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.min(6)]),
   })
-  onLogin() {}
+
+  onLogin() {
+    this.login.emit()
+  }
+
   onRedirectToSignUp() {
     this.redirectToSignUp.emit()
   }

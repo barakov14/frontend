@@ -1,9 +1,8 @@
 import {Component, inject} from '@angular/core'
 import {RegisterFormUiComponent} from '../register-form-ui/register-form-ui.component'
 import {Router} from '@angular/router'
-import {Store} from '@ngrx/store'
-import {authActions} from '../../data-access/+state/auth.actions'
 import {RegisterPayload} from '../../data-access/models/sign.model'
+import {AuthFacade} from '../../data-access/auth.facade'
 
 @Component({
   selector: 'app-register-container',
@@ -14,13 +13,13 @@ import {RegisterPayload} from '../../data-access/models/sign.model'
 })
 export class RegisterContainerComponent {
   private readonly router = inject(Router)
-  private readonly store = inject(Store)
+  private readonly authFacade = inject(AuthFacade)
 
   onRedirectToSignIn() {
     this.router.navigate(['/login'])
   }
+
   onRegister(req: RegisterPayload) {
-    console.log('works')
-    this.store.dispatch(authActions.register({req}))
+    this.authFacade.onRegister(req)
   }
 }
