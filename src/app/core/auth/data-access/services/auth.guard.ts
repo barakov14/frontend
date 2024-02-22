@@ -7,7 +7,7 @@ export const authGuard = () => {
   const storage = inject(LocalStorageJwtService)
 
   if (!storage.getItem()) {
-    router.navigate(['/task'])
+    router.navigate(['/login'])
     return false
   }
   return true

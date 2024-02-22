@@ -74,4 +74,19 @@ export class AuthEffects {
     },
     {functional: true, dispatch: false},
   )
+  logoutEffect$ = createEffect(
+    (
+      actions$ = inject(Actions),
+      jwtService = inject(LocalStorageJwtService),
+      router = inject(Router),
+    ) =>
+      actions$.pipe(
+        ofType(authActions.logout),
+        tap(() => {
+          jwtService.removeItem()
+          router.navigate(['/login'])
+        }),
+      ),
+    {functional: true, dispatch: false},
+  )
 }
