@@ -10,10 +10,11 @@ import {provideEffects} from '@ngrx/effects'
 import {AuthEffects} from './core/auth/data-access/+state/auth.effects'
 import {provideStoreDevtools} from '@ngrx/store-devtools'
 import {authFeature} from './core/auth/data-access/+state/auth.reducer'
-import {provideHttpClient} from '@angular/common/http'
+import {provideHttpClient, withInterceptors} from '@angular/common/http'
 import {taskFeature} from './task/data-access/+state/task.reducer'
 import {TaskEffects} from './task/data-access/+state/task.effects'
 import {provideNativeDateAdapter} from '@angular/material/core'
+import {tokenInterceptor} from './core/auth/data-access/services/token.interceptor'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +23,7 @@ export const appConfig: ApplicationConfig = {
       [authFeature.name]: authFeature.reducer,
       [taskFeature.name]: taskFeature.reducer,
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([tokenInterceptor])),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
