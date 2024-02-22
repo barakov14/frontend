@@ -7,3 +7,7 @@ export const selectTasks = createSelector(
   selectFeature,
   (state: TaskState) => state.taskList,
 )
+export const selectTask = createSelector(
+  selectFeature,
+  (state: TaskState) => state.taskList,
+)

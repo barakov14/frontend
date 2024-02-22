@@ -11,4 +11,6 @@ export class TaskFacade {
   loadTasks() {
     this.store.dispatch(taskActions.loadAllTasks())
   }
+
+  loadTaskDetail() {}
 }
