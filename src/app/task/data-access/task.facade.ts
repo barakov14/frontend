@@ -12,5 +12,7 @@ export class TaskFacade {
     this.store.dispatch(taskActions.loadAllTasks())
   }
 
-  loadTaskDetail() {}
+  loadTaskDetail(id: number) {
+    this.store.dispatch(taskActions.loadTaskDetail({id}))
+  }
 }
