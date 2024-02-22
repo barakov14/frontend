@@ -8,4 +8,6 @@ import {InvitationComponent} from '../invitation/invitation.component'
   templateUrl: './invitation-container.component.html',
   styleUrl: './invitation-container.component.scss',
 })
-export class InvitationContainerComponent {}
+export class InvitationContainerComponent {
+  onGetInvitationCode(invitation: string) {}
+}

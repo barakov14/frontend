@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component, EventEmitter, Output} from '@angular/core'
 import {
   MatFormField,
   MatLabel,
@@ -28,11 +28,13 @@ import {
   styleUrl: './invitation.component.scss',
 })
 export class InvitationComponent {
+  @Output() invitation = new EventEmitter()
   public formGroup = new FormBuilder().group({
     position: new FormControl('', Validators.required),
   })
 
   onGetInvitationCode() {
     console.log(this.formGroup.getRawValue())
+    this.invitation.emit(this.formGroup.value.position)
   }
 }
