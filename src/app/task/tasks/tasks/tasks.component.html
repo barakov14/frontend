@@ -1,35 +1,14 @@
-<div class="mat-elevation-z8">
-  <table [dataSource]="dataSource" mat-table>
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="title">
-      <th *matHeaderCellDef mat-header-cell> Title</th>
-      <td *matCellDef="let element" mat-cell> {{ element.title }}</td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="assigned developer">
-      <th *matHeaderCellDef mat-header-cell> Assigned Developer</th>
-      <td *matCellDef="let element" mat-cell> {{ element.assignedDeveloperId }}</td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="deadline">
-      <th *matHeaderCellDef mat-header-cell> deadline</th>
-      <td *matCellDef="let element" mat-cell> {{ element.deadline }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <th *matHeaderCellDef mat-header-cell> status</th>
-      <td *matCellDef="let element" mat-cell> {{ element.status }}</td>
-    </ng-container>
-
-    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 aria-label="Select page of periodic elements"
-                 showFirstLastButtons>
-  </mat-paginator>
-</div>
+<table>
+  <tr>
+    <th>id</th>
+    >
+    <th><a>title</a></th>
+    <th>responsible</th>
+    <th>review</th>
+    <th>deadline</th>
+    <th>status</th>
+  </tr>
+  <tr *ngFor="let task of tasks?.tasks">
+    <td>{{ task }}</td>
+  </tr>
+</table>

@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects'
 import {ApiService} from '../../../core/http/api.service'
 import {map, switchMap, tap} from 'rxjs'
 import {taskActions} from './task.actions'
-import {CreateTask, Task, TaskList} from '../models/tasks.model'
+import {CreateTask, Task, TaskListDTO} from '../models/tasks.model'
 import {Router} from '@angular/router'
 
 @Injectable({providedIn: 'root'})
@@ -13,7 +13,7 @@ export class TaskEffects {
       actions$.pipe(
         ofType(taskActions.loadAllTasks),
         switchMap(() =>
-          api.get<TaskList[]>('/task/all').pipe(
+          api.get<TaskListDTO>('/task/all').pipe(
             map((tasks) => {
               return taskActions.loadAllTasksSuccess({tasks})
             }),

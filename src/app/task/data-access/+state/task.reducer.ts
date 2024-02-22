@@ -1,5 +1,5 @@
 import {LoadingStatus} from '../../../core/data-access/loading-status.type'
-import {Task, TaskList} from '../models/tasks.model'
+import {Task, TaskListDTO} from '../models/tasks.model'
 import {createFeature, createReducer, on} from '@ngrx/store'
 import {taskActions} from './task.actions'
 
@@ -8,7 +8,7 @@ export const taskFeatureKey = 'task'
 export interface TaskState {
   taskStatus: LoadingStatus
   error: string | null
-  taskList: TaskList[] | undefined | null
+  taskList: TaskListDTO | undefined | null
   task: Task | undefined | null
 }
 

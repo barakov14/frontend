@@ -5,6 +5,7 @@ import {FooterComponent} from './core/layout/footer/footer.component'
 import {TasksContainerComponent} from './task/tasks/tasks-container/tasks-container.component'
 import {TaskCreateButtonComponent} from './task/task-create/task-create-button/task-create-button.component'
 import {TaskDetailContainerComponent} from './task/task-detail/task-detail-container/task-detail-container.component'
+import {InvitationContainerComponent} from './invitation/invitation-container/invitation-container.component'
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import {TaskDetailContainerComponent} from './task/task-detail/task-detail-conta
     TasksContainerComponent,
     TaskCreateButtonComponent,
     TaskDetailContainerComponent,
+    InvitationContainerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

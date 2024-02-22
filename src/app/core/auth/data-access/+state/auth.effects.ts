@@ -12,13 +12,14 @@ export class AuthEffects {
       actions$.pipe(
         ofType(authActions.register),
         switchMap(({req}) => {
-          return api.post<any, RegisterPayload>('/auth/register', req).pipe(
+          return api.post<void, RegisterPayload>('/auth/register', req).pipe(
             map(() => {
               console.log('register successful')
               return authActions.registerSuccess()
             }),
             catchError((errorRes) => {
               console.log('register failure')
+              console.log(errorRes)
               return of(authActions.registerFailure())
             }),
           )
