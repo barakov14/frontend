@@ -36,7 +36,11 @@ export class LoginFormUiComponent {
   })
 
   onLogin() {
-    this.login.emit()
+    const userData = {
+      username: this.formGroup.value.username,
+      password: this.formGroup.value.password,
+    }
+    this.login.emit(userData)
   }
 
   onRedirectToSignUp() {

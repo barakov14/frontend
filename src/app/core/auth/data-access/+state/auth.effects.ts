@@ -40,17 +40,19 @@ export class AuthEffects {
       actions$.pipe(
         ofType(authActions.login),
         switchMap(({req}) => {
-          return api.post<UserWithToken, LoginPayload>('/auth/', req).pipe(
-            map((user) => {
-              console.log('login successful')
-              return authActions.authSuccess({user})
-            }),
-            catchError((errorRes) => {
-              console.log('register failure')
-              console.log(errorRes)
-              return of(authActions.loginFailure())
-            }),
-          )
+          return api
+            .post<UserWithToken, LoginPayload>('/auth/authenticate', req)
+            .pipe(
+              map((user) => {
+                console.log('login successful')
+                return authActions.authSuccess({user})
+              }),
+              catchError((errorRes) => {
+                console.log('login failure')
+                console.log(errorRes)
+                return of(authActions.loginFailure())
+              }),
+            )
         }),
       ),
     {functional: true},
