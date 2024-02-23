@@ -1,4 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core'
 import {
   MatFormField,
   MatLabel,
@@ -26,6 +31,7 @@ import {
   ],
   templateUrl: './invitation.component.html',
   styleUrl: './invitation.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvitationComponent {
   @Output() invitation = new EventEmitter()

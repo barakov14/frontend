@@ -1,4 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core'
 import {
   FormBuilder,
   FormControl,
@@ -24,6 +29,7 @@ import {MatButtonModule} from '@angular/material/button'
   ],
   templateUrl: './login-form-ui.component.html',
   styleUrl: './login-form-ui.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormUiComponent {
   public hide = true

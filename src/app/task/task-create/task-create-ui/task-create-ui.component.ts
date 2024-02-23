@@ -1,4 +1,10 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+} from '@angular/core'
 import {MatButtonModule} from '@angular/material/button'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatIcon} from '@angular/material/icon'
@@ -34,6 +40,7 @@ import {DateAdapter} from '@angular/material/core'
   ],
   templateUrl: './task-create-ui.component.html',
   styleUrl: './task-create-ui.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCreateUiComponent {
   minDate: Date

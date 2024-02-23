@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {ChangeDetectionStrategy, Component} from '@angular/core'
 import {RouterOutlet} from '@angular/router'
 
 @Component({
@@ -7,5 +7,6 @@ import {RouterOutlet} from '@angular/router'
   imports: [RouterOutlet],
   templateUrl: './unauthorized-user-layout.component.html',
   styleUrl: './unauthorized-user-layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnauthorizedUserLayoutComponent {}

@@ -1,4 +1,9 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
@@ -9,7 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms'
-import {Router} from '@angular/router'
 import {RegisterPayload} from '../../data-access/models/sign.model'
 
 @Component({
@@ -24,6 +28,7 @@ import {RegisterPayload} from '../../data-access/models/sign.model'
   ],
   templateUrl: './register-form-ui.component.html',
   styleUrl: './register-form-ui.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormUiComponent {
   public hide = true
@@ -34,13 +39,14 @@ export class RegisterFormUiComponent {
     name: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    inviteCode: new FormControl('', [Validators.required]),
+    inviteCode: new FormControl(''),
     password: new FormControl('', [Validators.required, Validators.min(6)]),
     confirmPassword: new FormControl('', [
       Validators.required,
       Validators.min(6),
     ]),
   })
+
   onRegister() {
     const userData: RegisterPayload = {
       name: this.formGroup.value.name as string,
@@ -52,6 +58,7 @@ export class RegisterFormUiComponent {
     }
     this.register.emit(userData)
   }
+
   onRedirectToSignIn() {
     this.redirectToSignIn.emit()
   }

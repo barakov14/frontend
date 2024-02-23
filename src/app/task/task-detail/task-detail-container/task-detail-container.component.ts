@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {ChangeDetectionStrategy, Component} from '@angular/core'
 import {TaskDetailComponent} from '../task-detail/task-detail.component'
 
 @Component({
@@ -7,5 +7,6 @@ import {TaskDetailComponent} from '../task-detail/task-detail.component'
   imports: [TaskDetailComponent],
   templateUrl: './task-detail-container.component.html',
   styleUrl: './task-detail-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskDetailContainerComponent {}

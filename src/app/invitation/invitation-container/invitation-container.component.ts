@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core'
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core'
 import {InvitationComponent} from '../invitation/invitation.component'
 import {Store} from '@ngrx/store'
 import {invitationActions} from '../data-access/+store/invitation.actions'
@@ -9,6 +9,7 @@ import {invitationActions} from '../data-access/+store/invitation.actions'
   imports: [InvitationComponent],
   templateUrl: './invitation-container.component.html',
   styleUrl: './invitation-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvitationContainerComponent {
   private readonly store = inject(Store)

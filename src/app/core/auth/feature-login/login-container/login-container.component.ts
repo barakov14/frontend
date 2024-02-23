@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core'
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core'
 import {LoginFormUiComponent} from '../login-form-ui/login-form-ui.component'
 import {Router} from '@angular/router'
 import {AuthFacade} from '../../data-access/auth.facade'
@@ -10,6 +10,7 @@ import {LoginPayload} from '../../data-access/models/sign.model'
   imports: [LoginFormUiComponent],
   templateUrl: './login-container.component.html',
   styleUrl: './login-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginContainerComponent {
   private readonly router = inject(Router)

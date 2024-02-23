@@ -3,11 +3,7 @@ import {ApiService} from '../../../http/api.service'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
 import {authActions} from './auth.actions'
 import {catchError, map, of, switchMap, tap} from 'rxjs'
-import {
-  LoginPayload,
-  RegisterPayload,
-  UserWithToken,
-} from '../models/sign.model'
+import {LoginPayload, RegisterPayload, Token} from '../models/sign.model'
 import {LocalStorageJwtService} from '../services/local-storage-jwt.service'
 import {Router} from '@angular/router'
 
@@ -18,19 +14,17 @@ export class AuthEffects {
       actions$.pipe(
         ofType(authActions.register),
         switchMap(({req}) => {
-          return api
-            .post<UserWithToken, RegisterPayload>('/auth/register', req)
-            .pipe(
-              map((user) => {
-                console.log('register successful')
-                return authActions.authSuccess({user})
-              }),
-              catchError((errorRes) => {
-                console.log('register failure')
-                console.log(errorRes)
-                return of(authActions.registerFailure())
-              }),
-            )
+          return api.post<Token, RegisterPayload>('/auth/register', req).pipe(
+            map((token) => {
+              console.log('register successful')
+              return authActions.authSuccess({token})
+            }),
+            catchError((errorRes) => {
+              console.log('register failure')
+              console.log(errorRes)
+              return of(authActions.registerFailure())
+            }),
+          )
         }),
       ),
     {functional: true},
@@ -40,19 +34,17 @@ export class AuthEffects {
       actions$.pipe(
         ofType(authActions.login),
         switchMap(({req}) => {
-          return api
-            .post<UserWithToken, LoginPayload>('/auth/authenticate', req)
-            .pipe(
-              map((user) => {
-                console.log('login successful')
-                return authActions.authSuccess({user})
-              }),
-              catchError((errorRes) => {
-                console.log('login failure')
-                console.log(errorRes)
-                return of(authActions.loginFailure())
-              }),
-            )
+          return api.post<Token, LoginPayload>('/auth/authenticate', req).pipe(
+            map((token) => {
+              console.log('login successful')
+              return authActions.authSuccess({token})
+            }),
+            catchError((errorRes) => {
+              console.log('login failure')
+              console.log(errorRes)
+              return of(authActions.loginFailure())
+            }),
+          )
         }),
       ),
     {functional: true},
@@ -66,8 +58,8 @@ export class AuthEffects {
       return actions$.pipe(
         ofType(authActions.authSuccess),
         tap((action) => {
-          console.log(action.user)
-          localStorageJWTService.setItem(action.user.token)
+          console.log(action.token)
+          localStorageJWTService.setItem(action.token.token)
           router.navigateByUrl('/')
         }),
       )

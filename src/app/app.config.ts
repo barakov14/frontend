@@ -17,6 +17,8 @@ import {provideNativeDateAdapter} from '@angular/material/core'
 import {tokenInterceptor} from './core/auth/data-access/services/token.interceptor'
 import {invitationFeature} from './invitation/data-access/+store/invitation.reducer'
 import {InvitationEffects} from './invitation/data-access/+store/invitation.effects'
+import {profileFeature} from './profile/data-access/+state/profile.reducer'
+import {ProfileEffects} from './profile/data-access/+state/profile.effects'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +27,7 @@ export const appConfig: ApplicationConfig = {
       [authFeature.name]: authFeature.reducer,
       [taskFeature.name]: taskFeature.reducer,
       [invitationFeature.name]: invitationFeature.reducer,
+      [profileFeature.name]: profileFeature.reducer,
     }),
     provideHttpClient(withInterceptors([tokenInterceptor])),
     provideStoreDevtools({
@@ -39,7 +42,7 @@ export const appConfig: ApplicationConfig = {
       provide: API_URL,
       useValue: environment.api_url,
     },
-    provideEffects(AuthEffects, TaskEffects, InvitationEffects),
+    provideEffects(AuthEffects, TaskEffects, InvitationEffects, ProfileEffects),
     provideNativeDateAdapter(),
   ],
 }

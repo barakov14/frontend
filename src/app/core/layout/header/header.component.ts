@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core'
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core'
 import {RouterLink} from '@angular/router'
 import {AuthFacade} from '../../auth/data-access/auth.facade'
 import {MatButton} from '@angular/material/button'
@@ -11,6 +11,7 @@ import {NgIf} from '@angular/common'
   imports: [RouterLink, MatButton, PushPipe, NgIf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   private readonly authFacade = inject(AuthFacade)
