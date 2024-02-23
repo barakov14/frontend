@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core'
 import {TaskDetailComponent} from '../task-detail/task-detail.component'
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import {TaskFacade} from '../../data-access/task.facade'
 
 @Component({
@@ -14,6 +14,8 @@ import {TaskFacade} from '../../data-access/task.facade'
 export class TaskDetailContainerComponent implements OnInit {
   taskId!: string
   private readonly route = inject(ActivatedRoute)
+  private readonly router = inject(Router)
+
   private readonly taskFacade = inject(TaskFacade)
   public task = this.taskFacade.task$
 
@@ -22,5 +24,9 @@ export class TaskDetailContainerComponent implements OnInit {
       this.taskId = params['id']
       this.taskFacade.loadTaskDetail(parseInt(this.taskId))
     })
+  }
+
+  back() {
+    this.router.navigate(['/tasks'])
   }
 }

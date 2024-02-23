@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center h-screen">
+<div class="flex justify-center mb-20 h-screen">
   <div *ngIf="(task$ | async) as task">
     <h1><span class="text-blue-900">#{{ task.id }}</span> {{ task.title }}</h1>
     <p>createdAt: {{ task.createdAt }} - deadline {{ task.deadline }}</p>
