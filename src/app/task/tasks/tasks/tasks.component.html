@@ -12,7 +12,9 @@
   <tbody>
   <tr *ngFor="let task of tasks">
     <td>{{ task.id }}</td>
-    <td>{{ task.title }}</td>
+    <td>
+      <button (click)="goToDetail(+task.id)">{{ task.title }}</button>
+    </td>
     <td>{{ task.assignedDeveloperId }}</td>
     <td>{{ task.createdAt }}</td>
     <td>{{ task.deadline }}</td>

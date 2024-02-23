@@ -28,7 +28,7 @@ export class TaskEffects {
       actions$.pipe(
         ofType(taskActions.loadTaskDetail),
         switchMap(({id}) =>
-          api.get<Task>('/task/id/' + id.toString()).pipe(
+          api.get<Task>('/task/' + id).pipe(
             map((task) => {
               return taskActions.loadTaskDetailSuccess({task})
             }),

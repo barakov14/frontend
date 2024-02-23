@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core'
 import {TaskDetailComponent} from '../task-detail/task-detail.component'
+import {ActivatedRoute} from '@angular/router'
+import {TaskFacade} from '../../data-access/task.facade'
 
 @Component({
   selector: 'app-task-detail-container',
@@ -9,4 +11,16 @@ import {TaskDetailComponent} from '../task-detail/task-detail.component'
   styleUrl: './task-detail-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskDetailContainerComponent {}
+export class TaskDetailContainerComponent implements OnInit {
+  taskId!: string
+  private readonly route = inject(ActivatedRoute)
+  private readonly taskFacade = inject(TaskFacade)
+  public task = this.taskFacade.task$
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.taskId = params['id']
+      this.taskFacade.loadTaskDetail(parseInt(this.taskId))
+    })
+  }
+}

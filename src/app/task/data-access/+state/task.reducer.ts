@@ -46,9 +46,10 @@ export const taskFeature = createFeature({
       ...state,
       taskStatus: 'loading' as const,
     })),
-    on(taskActions.loadTaskDetailSuccess, (state) => ({
+    on(taskActions.loadTaskDetailSuccess, (state, action) => ({
       ...state,
       taskStatus: 'loaded' as const,
+      task: action.task,
     })),
   ),
 })

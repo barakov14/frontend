@@ -16,6 +16,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'tasks/:id',
+        loadComponent: () =>
+          import(
+            './task/task-detail/task-detail-container/task-detail-container.component'
+          ).then((c) => c.TaskDetailContainerComponent),
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import(

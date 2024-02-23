@@ -1,6 +1,10 @@
 import {inject, Injectable} from '@angular/core'
 import {select, Store} from '@ngrx/store'
-import {selectTasks, selectTaskStatus} from './+state/task.selectors'
+import {
+  selectTask,
+  selectTasks,
+  selectTaskStatus,
+} from './+state/task.selectors'
 import {taskActions} from './+state/task.actions'
 import {CreateTask, TaskList} from './models/tasks.model'
 import {filter, Observable} from 'rxjs'
@@ -10,6 +14,7 @@ export class TaskFacade {
   private readonly store = inject(Store)
   public tasks$ = this.store.pipe(select(selectTasks))
   public taskStatus$ = this.store.pipe(select(selectTaskStatus))
+  public task$ = this.store.pipe(select(selectTask))
 
   loadTasks() {
     this.store.dispatch(taskActions.loadAllTasks())
