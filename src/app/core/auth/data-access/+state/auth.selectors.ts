@@ -12,3 +12,7 @@ export const selectIsAuthenticated = createSelector(
   selectAuthStatus,
   (loadingStatus: LoadingStatus) => loadingStatus === 'loaded',
 )
+export const selectUser = createSelector(
+  selectFeature,
+  (state: AuthState) => state.loggedUser,
+)

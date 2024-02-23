@@ -29,6 +29,13 @@ export const routes: Routes = [
             './task/task-create/task-create-container/task-create-container.component'
           ).then((c) => c.TaskCreateContainerComponent),
       },
+      {
+        path: 'invite-code',
+        loadComponent: () =>
+          import(
+            './invitation/invitation-container/invitation-container.component'
+          ).then((c) => c.InvitationContainerComponent),
+      },
     ],
   },
   {

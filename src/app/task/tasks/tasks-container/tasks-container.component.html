@@ -1,2 +1,5 @@
 <app-task-create-button></app-task-create-button>
-<app-tasks [tasks]="tasks$ | async"></app-tasks>
+<app-tasks
+  [taskStatus]="(taskStatus$ | async)!"
+  [tasks]="tasks$ | async"
+></app-tasks>

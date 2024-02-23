@@ -1,8 +1,9 @@
-import {createActionGroup, props} from '@ngrx/store'
+import {createActionGroup, emptyProps, props} from '@ngrx/store'
 
-export const taskActions = createActionGroup({
+export const invitationActions = createActionGroup({
   source: 'Invitation',
   events: {
     getInvitationCode: props<{role: string}>(),
+    getInvitationCodeSuccess: emptyProps(),
   },
 })

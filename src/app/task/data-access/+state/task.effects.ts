@@ -15,6 +15,7 @@ export class TaskEffects {
         switchMap(() =>
           api.get<TaskList>('/task/all').pipe(
             map((tasks) => {
+              console.log(tasks)
               return taskActions.loadAllTasksSuccess({tasks})
             }),
           ),
@@ -48,7 +49,10 @@ export class TaskEffects {
             tap(() => {
               router.navigate(['/task'])
             }),
-            map(() => taskActions.createTaskSuccess()),
+            map(() => {
+              console.log('task created')
+              return taskActions.createTaskSuccess()
+            }),
           ),
         ),
       ),

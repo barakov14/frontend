@@ -1,5 +1,7 @@
-import {Component} from '@angular/core'
+import {Component, inject} from '@angular/core'
 import {InvitationComponent} from '../invitation/invitation.component'
+import {Store} from '@ngrx/store'
+import {invitationActions} from '../data-access/+store/invitation.actions'
 
 @Component({
   selector: 'app-invitation-container',
@@ -9,5 +11,9 @@ import {InvitationComponent} from '../invitation/invitation.component'
   styleUrl: './invitation-container.component.scss',
 })
 export class InvitationContainerComponent {
-  onGetInvitationCode(invitation: string) {}
+  private readonly store = inject(Store)
+
+  onGetInvitationCode(role: string) {
+    this.store.dispatch(invitationActions.getInvitationCode({role}))
+  }
 }

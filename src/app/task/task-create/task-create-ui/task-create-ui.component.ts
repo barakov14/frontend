@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core'
+import {Component, EventEmitter, inject, Output} from '@angular/core'
 import {MatButtonModule} from '@angular/material/button'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatIcon} from '@angular/material/icon'
@@ -38,12 +38,14 @@ import {DateAdapter} from '@angular/material/core'
 export class TaskCreateUiComponent {
   minDate: Date
   maxDate: Date
+  @Output() createTask = new EventEmitter()
+
   public formGroup = new FormBuilder().group({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     assignedDeveloperId: new FormControl('', [Validators.required]),
     deadline: new FormControl('', [Validators.required]),
-    status: new FormControl('in proccess', [Validators.required]),
+    status: new FormControl('IN_PROGRESS', [Validators.required]),
   })
   private dateAdapter = inject(DateAdapter)
 
@@ -53,6 +55,13 @@ export class TaskCreateUiComponent {
   }
 
   onCreateTask() {
-    console.log(this.formGroup.getRawValue())
+    const data = {
+      title: this.formGroup.value.title,
+      description: this.formGroup.value.description,
+      assignedDeveloperId: this.formGroup.value.assignedDeveloperId,
+      deadline: this.formGroup.value.deadline,
+      status: this.formGroup.value.status,
+    }
+    this.createTask.emit(data)
   }
 }

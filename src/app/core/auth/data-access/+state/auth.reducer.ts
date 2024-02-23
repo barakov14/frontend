@@ -40,7 +40,7 @@ export const authFeature = createFeature({
       ...state,
       authStatus: 'loaded' as const,
       token: action.user.token,
-      user: action.user.user,
+      loggedUser: action.user.user,
     })),
   ),
 })

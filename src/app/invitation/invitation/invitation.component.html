@@ -1,4 +1,5 @@
-<form (ngSubmit)="onGetInvitationCode()" [formGroup]="formGroup">
+<form (ngSubmit)="onGetInvitationCode()" [formGroup]="formGroup"
+      class="flex flex-col items-center justify-center mt-60">
   <mat-form-field>
     <mat-label>Select position</mat-label>
     <mat-select [formControlName]="'position'" required>

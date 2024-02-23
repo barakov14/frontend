@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core'
 import {TaskCreateUiComponent} from '../task-create-ui/task-create-ui.component'
+import {TaskFacade} from '../../data-access/task.facade'
+import {CreateTask} from '../../data-access/models/tasks.model'
 
 @Component({
   selector: 'app-task-create-container',
@@ -9,4 +11,10 @@ import {TaskCreateUiComponent} from '../task-create-ui/task-create-ui.component'
   styleUrl: './task-create-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskCreateContainerComponent {}
+export class TaskCreateContainerComponent {
+  private readonly taskFacade = inject(TaskFacade)
+
+  onCreateTask(task: CreateTask) {
+    this.taskFacade.createTask(task)
+  }
+}
