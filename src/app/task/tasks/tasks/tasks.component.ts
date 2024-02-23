@@ -5,7 +5,6 @@ import {TableModule} from 'primeng/table'
 import {ButtonModule} from 'primeng/button'
 import {AsyncPipe, NgForOf, NgIf} from '@angular/common'
 import {TaskList} from '../../data-access/models/tasks.model'
-import {LoadingStatus} from '../../../core/data-access/loading-status.type'
 
 @Component({
   selector: 'app-tasks',
@@ -25,7 +24,6 @@ import {LoadingStatus} from '../../../core/data-access/loading-status.type'
 })
 export class TasksComponent implements OnInit {
   @Input() tasks: TaskList | undefined | null
-  @Input() taskStatus!: LoadingStatus
   public first = 0
   public rows = 10
 

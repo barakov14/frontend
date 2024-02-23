@@ -27,10 +27,10 @@ export const taskFeature = createFeature({
       ...state,
       taskStatus: 'loading' as const,
     })),
-    on(taskActions.loadAllTasksSuccess, (state, res) => ({
+    on(taskActions.loadAllTasksSuccess, (state, action) => ({
       ...state,
       taskStatus: 'loaded' as const,
-      tasks: res.tasks,
+      taskList: action.tasks,
     })),
 
     on(taskActions.createTask, (state) => ({

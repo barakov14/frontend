@@ -15,12 +15,11 @@ import {TaskList} from '../../data-access/models/tasks.model'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksContainerComponent implements OnInit {
-  public tasks$?: Observable<TaskList | null | undefined>
   private readonly taskFacade = inject(TaskFacade)
-  public taskStatus$ = this.taskFacade.taskStatus$
+  public tasks$?: Observable<TaskList | null | undefined> =
+    this.taskFacade.tasks$
 
   ngOnInit() {
     this.taskFacade.loadTasks()
-    this.tasks$ = this.taskFacade.getTasksAfterLoad()
   }
 }
