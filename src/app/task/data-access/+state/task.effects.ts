@@ -47,7 +47,7 @@ export class TaskEffects {
         switchMap(({task}) =>
           api.post<void, CreateTask>('/task/create', task).pipe(
             tap(() => {
-              router.navigate(['/task'])
+              router.navigate(['/tasks'])
             }),
             map(() => {
               console.log('task created')

@@ -60,7 +60,7 @@ export class AuthEffects {
         tap((action) => {
           console.log(action.token)
           localStorageJWTService.setItem(action.token.token)
-          router.navigateByUrl('/')
+          router.navigateByUrl('/tasks')
         }),
       )
     },
